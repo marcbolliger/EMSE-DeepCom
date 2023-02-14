@@ -26,7 +26,7 @@ def preprocess(outpath, datapath, prefix):
                     nl = data["docstring"]
                     nl = nl.split()
                     nl = ' '.join(nl)
-                    codefile.write(code)
-                    nlfile.write(nl)
+                    codefile.write(code+"\n")
+                    nlfile.write(nl+"\n")
 
 preprocess(outpath, datapath, prefix)
