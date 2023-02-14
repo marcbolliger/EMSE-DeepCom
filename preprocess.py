@@ -21,10 +21,10 @@ def preprocess(outpath, datapath, prefix):
                 for line in f:
                     data = json.loads(line)
                     code = data["code"]
-                    code = code.splits()
+                    code = code.split()
                     code = ' '.join(code)
                     nl = data["docstring"]
-                    nl = nl.splits()
+                    nl = nl.split()
                     nl = ' '.join(nl)
                     codefile.write(code)
                     nlfile.write(nl)
