@@ -123,7 +123,7 @@ def main(args=None):
     args = parser.parse_args(args)
 
     # read config file and default config
-    with open('../config/default.yaml') as f:
+    with open('../default.yaml') as f:
         default_config = utils.AttrDict(yaml.safe_load(f))
 
     with open(args.config) as f:
