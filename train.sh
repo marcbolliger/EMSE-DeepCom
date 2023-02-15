@@ -29,7 +29,7 @@ python3 $source/data_utils/get_ast.py $model/test/test.token.code $model/test/te
 python3 $source/build_vocab.py $model/train/train.token.code $model/vocab.code
 python3 $source/build_vocab.py $model/train/train.token.nl $model/vocab.nl
 #Copy in AST vocab file
-cp $source/vocab/vocab.ast $model/vocab.ast $source/config.yaml
+cp $source/vocab/vocab.ast $model/vocab.ast
 
 #Edit configs
 python3 $source/set_configs.py $model $source/config.yaml

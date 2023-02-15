@@ -13,8 +13,8 @@ prefix = sys.argv[3]
 
 def preprocess(outpath, datapath, prefix):
     print("Preprocessing "+datapath+"...", flush=True)
-    codepath=outpath+prefix+".token.code"
-    nlpath=outpath+prefix+".token.nl"
+    codepath=outpath+"/"+prefix+".token.code"
+    nlpath=outpath+"/"+prefix+".token.nl"
     with gzip.open(datapath) as f:
         with open(codepath, 'w') as codefile:
             with open(nlpath, 'w') as nlfile:
