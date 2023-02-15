@@ -38,8 +38,8 @@ def process_source(file_name, save_file):
                         tks.append('NUM_')
                     elif tk.__class__.__name__ == 'Boolean':
                         tks.append('BOOL_')
-                else:
-                    tks.append(tk.value)
+                    else:
+                        tks.append(tk.value)
             except:
                 print("Failed to Lex: "+line)
             save.write(" ".join(tks) + '\n')
