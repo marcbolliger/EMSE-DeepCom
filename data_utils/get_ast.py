@@ -37,7 +37,7 @@ def process_source(file_name, save_file):
                     elif 'Integer' in tk.__class__.__name__ or 'FloatingPoint' in tk.__class__.__name__:
                         tks.append('NUM_')
                     elif tk.__class__.__name__ == 'Boolean':
-                    tks.append('BOOL_')
+                        tks.append('BOOL_')
                 else:
                     tks.append(tk.value)
             except:
