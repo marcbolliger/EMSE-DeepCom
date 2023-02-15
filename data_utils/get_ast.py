@@ -28,17 +28,20 @@ def process_source(file_name, save_file):
     with open(save_file, 'w+', encoding='utf-8') as save:
         for line in lines:
             code = line.strip()
-            tokens = list(javalang.tokenizer.tokenize(code))
             tks = []
-            for tk in tokens:
-                if tk.__class__.__name__ == 'String' or tk.__class__.__name__ == 'Character':
-                    tks.append('STR_')
-                elif 'Integer' in tk.__class__.__name__ or 'FloatingPoint' in tk.__class__.__name__:
-                    tks.append('NUM_')
-                elif tk.__class__.__name__ == 'Boolean':
+            try:
+                tokens = list(javalang.tokenizer.tokenize(code))
+                for tk in tokens:
+                    if tk.__class__.__name__ == 'String' or tk.__class__.__name__ == 'Character':
+                        tks.append('STR_')
+                    elif 'Integer' in tk.__class__.__name__ or 'FloatingPoint' in tk.__class__.__name__:
+                        tks.append('NUM_')
+                    elif tk.__class__.__name__ == 'Boolean':
                     tks.append('BOOL_')
                 else:
                     tks.append(tk.value)
+            except:
+                print("Failed to Lex: "+line)
             save.write(" ".join(tks) + '\n')
 
 
