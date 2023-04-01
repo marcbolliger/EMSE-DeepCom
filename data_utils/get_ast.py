@@ -26,7 +26,7 @@ def process_source(file_name, save_file):
     with open(file_name, 'r', encoding='utf-8') as source:
         lines = source.readlines()
     with open(save_file, 'w+', encoding='utf-8') as save:
-        for line in lines:
+        for i,line in enumerate(lines):
             code = line.strip()
             tks = []
             try:
@@ -41,7 +41,7 @@ def process_source(file_name, save_file):
                     else:
                         tks.append(tk.value)
             except:
-                print("Failed to Lex: "+line)
+                print("Failed to Lex: Index: "+i+", Code:"+line)
             save.write(" ".join(tks) + '\n')
 
 
