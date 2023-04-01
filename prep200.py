@@ -23,8 +23,8 @@ def preprocess(outpath, datapath, prefix):
                         break
                     data = json.loads(line)
                     code = data["code"]
-                    #code = code.split()
-                    #code = ' '.join(code)
+                    code = code.split()
+                    code = ' '.join(code)
                     nl = data["docstring"]
                     nl = nl.split()
                     nl = ' '.join(nl)
