@@ -19,16 +19,15 @@ def preprocess(outpath, datapath, prefix):
         with open(codepath, 'w') as codefile:
             with open(nlpath, 'w') as nlfile:
                 for i,line in enumerate(f):
-                    if i >=20:
-                        break
-                    data = json.loads(line)
-                    code = data["code"]
-                    #code = code.split()
-                    #code = ' '.join(code)
-                    nl = data["docstring"]
-                    nl = nl.split()
-                    nl = ' '.join(nl)
-                    codefile.write(code+"\n")
-                    nlfile.write(nl+"\n")
+                    if i ==194:
+                        data = json.loads(line)
+                        code = data["code"]
+                        #code = code.split()
+                        #code = ' '.join(code)
+                        nl = data["docstring"]
+                        nl = nl.split()
+                        nl = ' '.join(nl)
+                        codefile.write(code+"\n")
+                        nlfile.write(nl+"\n")
 
 preprocess(outpath, datapath, prefix)
