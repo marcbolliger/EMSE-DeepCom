@@ -41,7 +41,7 @@ def process_source(file_name, save_file):
                     else:
                         tks.append(tk.value)
             except:
-                print("Failed to Lex: Index: "+i+", Code:"+line)
+                print(f"Failed to Lex: Index: {i}, Code:"+line)
             save.write(" ".join(tks) + '\n')
 
 
