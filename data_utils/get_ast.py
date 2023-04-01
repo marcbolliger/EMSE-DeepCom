@@ -65,7 +65,7 @@ def get_ast(file_name, w):
             try:
                 tree = parser.parse_member_declaration()
             except (javalang.parser.JavaSyntaxError, IndexError, StopIteration, TypeError):
-                print(code)
+                print("Failed to build AST!: \n"+code+"\n \n")
                 continue
             flatten = []
             for path, node in tree:
