@@ -17,10 +17,10 @@ source=/itet-stor/${USER}/codesearch-attacks_itetnas04/models_sourcecode/EMSE-De
 mkdir -p $model/test
 
 #Preprocess
-python3 $source/preprocess.py $dataset/test/test.jsonl.gz $model/test "test"
+python3 $source/preprocess.py $dataset/test/test.jsonl.gz $model/test "test_p"
 
 #Build ASTs
-python3 $source/data_utils/get_ast.py $model/test/test.token.code $model/test/test.token.ast
+python3 $source/data_utils/get_ast.py $model/test/test_p.token.code $model/test/test.token.ast $model/test/test.token.code
 
 cd $source/source_code
 #Train

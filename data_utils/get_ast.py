@@ -4,6 +4,10 @@ from tqdm import tqdm
 import collections
 import sys
 
+#Sys args:
+#[1]: Old Code file
+#[2]: AST file
+#[3]: New Code file
 
 def get_name(obj):
     if(type(obj).__name__ in ['list', 'tuple']):
@@ -21,29 +25,30 @@ def get_name(obj):
     else:
         return obj
 
-
-def process_source(file_name, save_file):
+#trim functions for which the lexer failed
+def process_source(file_name, save_file, save_og_code):
     with open(file_name, 'r', encoding='utf-8') as source:
         lines = source.readlines()
     with open(save_file, 'w+', encoding='utf-8') as save:
-        for i,line in enumerate(lines):
-            code = line.strip()
-            tks = []
-            try:
-                tokens = list(javalang.tokenizer.tokenize(code))
-                for tk in tokens:
-                    if tk.__class__.__name__ == 'String' or tk.__class__.__name__ == 'Character':
-                        tks.append('STR_')
-                    elif 'Integer' in tk.__class__.__name__ or 'FloatingPoint' in tk.__class__.__name__:
-                        tks.append('NUM_')
-                    elif tk.__class__.__name__ == 'Boolean':
-                        tks.append('BOOL_')
-                    else:
-                        tks.append(tk.value)
-            except:
-                print(f"Failed to Lex: Index: {i}, Code:"+line)
-                save.write(code + '\n')
-            save.write(" ".join(tks) + '\n')
+        with open(save_og_code, 'w+', encoding='utf-8') as save_og:
+            for i,line in enumerate(lines):
+                code = line.strip()
+                tks = []
+                try:
+                    tokens = list(javalang.tokenizer.tokenize(code))
+                    for tk in tokens:
+                        if tk.__class__.__name__ == 'String' or tk.__class__.__name__ == 'Character':
+                            tks.append('STR_')
+                        elif 'Integer' in tk.__class__.__name__ or 'FloatingPoint' in tk.__class__.__name__:
+                            tks.append('NUM_')
+                        elif tk.__class__.__name__ == 'Boolean':
+                            tks.append('BOOL_')
+                        else:
+                            tks.append(tk.value)
+                except:
+                    print(f"Failed to Lex: Index: {i}, Code:"+line)
+                save.write(" ".join(tks) + '\n')
+                save_og.write(code + '\n')
 
 
 def get_ast(file_name, w):
@@ -145,6 +150,6 @@ def get_ast(file_name, w):
 
 if __name__ == '__main__':
     # pre-process the source code: strings -> STR_, numbers-> NUM_, Booleans-> BOOL_
-    process_source(sys.argv[1], 'source.code')
+    process_source(sys.argv[1], 'source.code', sys.argv[3])
     # generate ast file for source code
     get_ast('source.code', sys.argv[2])

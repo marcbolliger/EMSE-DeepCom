@@ -18,12 +18,12 @@ mkdir -p $model/train
 mkdir -p $model/test
 
 #Preprocess
-python3 $source/preprocess.py $dataset/train/train.jsonl.gz $model/train "train"
-python3 $source/preprocess.py $dataset/test/test.jsonl.gz $model/test "test"
+python3 $source/preprocess.py $dataset/train/train.jsonl.gz $model/train "train_p"
+python3 $source/preprocess.py $dataset/test/test.jsonl.gz $model/test "test_p"
 
 #Build ASTs
-python3 $source/data_utils/get_ast.py $model/train/train.token.code $model/train/train.token.ast
-python3 $source/data_utils/get_ast.py $model/test/test.token.code $model/test/test.token.ast
+python3 $source/data_utils/get_ast.py $model/train/train_p.token.code $model/train/train.token.ast $model/train/train.token.code
+python3 $source/data_utils/get_ast.py $model/test/test_p.token.code $model/test/test.token.ast $model/test/test.token.code
 
 #Build vocab
 python3 $source/build_vocab.py $model/train/train.token.code $model/vocab.code
