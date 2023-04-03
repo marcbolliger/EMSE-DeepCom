@@ -3,7 +3,7 @@
 #Activate conda environment
 #source /home/marcbo/.bashrc
 [[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"
-conda activate /itet-stor/$user/codesearch-attacks_itetnas04/envs/deepcomenv
+conda activate /itet-stor/$USER/codesearch-attacks_itetnas04/envs/deepcomenv
 
 echo "Conda activated"
 
