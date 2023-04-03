@@ -6,8 +6,10 @@ import sys
 
 #Sys args:
 #[1]: Old Code file
-#[2]: AST file
+#[2]: Old NL file
 #[3]: New Code file
+#[4]: New NL file
+#[5]: AST file
 
 def get_name(obj):
     if(type(obj).__name__ in ['list', 'tuple']):
@@ -50,8 +52,8 @@ def process_source(file_name, save_file, save_og_code):
                 save.write(" ".join(tks) + '\n')
                 save_og.write(code + '\n')
 
-
-def get_ast(file_name, w):
+#rework without progress bar
+def get_ast(file_name, old_nl, ,w):
     with open(file_name, 'r', encoding='utf-8') as f:
         lines = f.readlines()
     with open(w, 'w+', encoding='utf-8') as wf:
@@ -150,6 +152,6 @@ def get_ast(file_name, w):
 
 if __name__ == '__main__':
     # pre-process the source code: strings -> STR_, numbers-> NUM_, Booleans-> BOOL_
-    process_source(sys.argv[1], 'source.code', sys.argv[3])
+    process_source(sys.argv[1], 'source.code')
     # generate ast file for source code
-    get_ast('source.code', sys.argv[2])
+    get_ast('source.code', sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
