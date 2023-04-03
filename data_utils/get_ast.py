@@ -52,7 +52,7 @@ def process_source(file_name, save_file):
 
 
 def get_ast(file_name, nl_name, file_new, nl_new, w):
-    with open(file_name, 'r', encoding='utf-8') as f, open(nl_name, 'r', encoding='utf-8') as f, nl:
+    with open(file_name, 'r', encoding='utf-8') as f, open(nl_name, 'r', encoding='utf-8') as nl:
         with open(w, 'w+', encoding='utf-8') as wf, open(file_new, 'w+', encoding='utf-8') as new_code, open(nl_new, 'w+', encoding='utf-8') as new_nl:
             ign_cnt = 0
             for code_line, nl_line in izip(f,nl):
