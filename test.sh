@@ -3,7 +3,8 @@
 #Activate conda environment
 #source /home/marcbo/.bashrc
 [[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"
-conda activate deepcomenv
+conda activate /itet-stor/$user/codesearch-attacks_itetnas04/envs/deepcomenv
+
 echo "Conda activated"
 
 
@@ -20,7 +21,7 @@ mkdir -p $model/test
 python3 $source/preprocess.py $dataset/test/test.jsonl.gz $model/test "test_p"
 
 #Build ASTs
-python3 $source/data_utils/get_ast.py $model/test/test_p.token.code $model/test/test.token.ast $model/test/test.token.code
+python3 $source/data_utils/get_ast.py $model/test/test_p.token.code $model/test/test_p.token.nl $model/test/test.token.code $model/test/test.token.nl $model/test/test.token.ast
 
 cd $source/source_code
 #Train
