@@ -23,6 +23,10 @@ python3 $source/preprocess.py $dataset/test/test.jsonl.gz $model/test "test_p"
 #Build ASTs
 python3 $source/data_utils/get_ast.py $model/test/test_p.token.code $model/test/test_p.token.nl $model/test/test.token.code $model/test/test.token.nl $model/test/test.token.ast
 
+#Edit configs again (in case a different user runs the testing)
+python3 $source/set_configs.py $model $source/config.yaml
+
+
 cd $source/source_code
 #Train
 python3 ./__main__.py ../config.yaml --eval --output=$model/predictions.nl -v
